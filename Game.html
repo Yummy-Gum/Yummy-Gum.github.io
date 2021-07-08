@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title></title>
+
+</head>
+
+<body>
+<canvas id = "mycanvas" height = "600" width = "900" style =" background-color: grey"></canvas>
+
+<script>
+var positionList = [] // Backdrops
+var u
+for (u = 0; u < 500; u++){
+positionList.push('')
+}
+var ground = new Image();ground.src = "dsc_0277.jpg";
+var yuhaoGuo = new Image();yuhaoGuo.src = "2015 合影.jpg";
+
+
+positionList[0]='b';
+positionList[1]='a';
+positionList[11]='b';
+positionList[20]='a';
+positionList[22]='b';
+positionList[30]='a';
+positionList[4]='b';
+positionList[6]='b';
+positionList[8]='b';
+positionList[15]='b';
+positionList[100]='b';
+
+var ctx = mycanvas.getContext("2d");
+ctx.fillStyle = "#FFFFFF"
+
+function finder(thing,groundType){
+
+	var e =0
+	var xthing=''
+	var ything=''
+	var f = 0
+	while (e<positionList.length){
+		if (positionList[e].includes(thing)) {
+			
+			var g = e.toString()
+			var xthing=''
+			var ything=''
+			if ((g.length+2)%2 == 1) {
+				for (f=0;f < (g.length-1)/2;f++){
+					xthing += g.charAt(f*2+1).toString()
+					ything += g.charAt(f*2).toString()
+				}
+				ything += g.charAt(g.length-1).toString()
+				if (xthing == ''){
+					xthing = '0'
+				}
+			}else {
+
+				for (f=0;f < g.length/2;f++){
+					xthing += g.charAt(f*2).toString()
+					ything += g.charAt(f*2+1).toString()
+				}
+			}
+			
+			ctx.drawImage(groundType,Number(xthing)*100,Number(ything)*100,100,100)
+		}
+	
+	e+=1
+	}
+}
+
+function doStuff() {
+ctx.clearRect(0,0,10000,3000)
+
+
+ctx.fillText(positionList,500,50)
+
+finder('b',ground) 
+finder('a',yuhaoGuo)
+}
+setInterval(doStuff,10)
+</script>
+
+</body>
+
+</html>
