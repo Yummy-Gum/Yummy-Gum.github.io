@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+
+
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+
+    <title></title>
+
+</head>
+
+<body>
+<canvas id = "mycanvas" style =" background-color: white; position: fixed; top: 0px; left: 0px"></canvas>
+
+<script>
+var w;
+var ratio;
+mycanvas.width = window.innerWidth
+mycanvas.height = window.innerHeight
+var ground = new Image();ground.src = "dsc_0277.jpg";
+
+var ctx = mycanvas.getContext("2d");
+window.onload = function() {
+	w = window.innerWidth/2.46;
+	ratio = ground.width/ground.height;
+
+	
+}
+
+function doStuff() {
+ctx.clearRect(0,0,window.innerWidth,window.innerHeight)
+mycanvas.width = window.innerWidth
+mycanvas.height = window.innerHeight
+ctx.drawImage(ground,0,0,(window.innerWidth-w)*ground.height/window.innerHeight,ground.height,0,0,window.innerWidth-w,window.innerHeight)
+}
+setInterval(doStuff,10)
+</script>
+
+</body>
+
+</html>
+
+
