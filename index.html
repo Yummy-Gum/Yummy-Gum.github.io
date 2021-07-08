@@ -17,7 +17,7 @@
   <button id="guessSubmit">Enter Guess</button>
 </div>
 
-<p></p>
+<a href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" id = "link"></a>
   </body>
     
   <script>
@@ -40,6 +40,8 @@ function checkGuess() {
       lastResult.innerHTML = "Congratulations! You got it right!";
       lowOrHi.innerHTML = "";
       disableForm();
+      link.innerHTML = "CLICK HERE";
+
     } else {
       lastResult.innerHTML = "Wrong!";
       if(userGuess < randomNumber) {
@@ -53,10 +55,10 @@ function checkGuess() {
   }
 }
 function disableForm() {
-  var wholeForm = document.querySelector(".form"); // grab a reference to the whole form (the contents of the div with class form)
-  wholeForm.style.opacity = 0.5; // change the opacity of the form to 0.5
+  var wholeForm = document.querySelector(".form"); 
+  wholeForm.style.opacity = 0.5; 
   guessField.setAttribute("disabled", "disabled");
-  guessSubmit.setAttribute("disabled", "disabled"); // disable the form field and submit button so they can no longer be used
+  guessSubmit.setAttribute("disabled", "disabled"); 
 }
 guessSubmit.onclick = checkGuess;
   </script>
