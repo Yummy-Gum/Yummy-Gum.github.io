@@ -15,6 +15,9 @@
 <div class="form">
   <label for="guessField" style = "color: white">Enter your next guess: </label><input type="Number" id="guessField">
   <button id="guessSubmit">Enter Guess</button>
+
+
+ <button id="Godmode">Activate God Mode</button>
 </div>
 
 
@@ -28,6 +31,9 @@ var lowOrHi = document.getElementById("lowOrHi");
 var guessSubmit = document.getElementById("guessSubmit");
 var guessField = document.getElementById("guessField");
 var guessCount = 1;
+function actgm() {
+	userGuess = randomNumber
+}
 function checkGuess() {
   var userGuess = Number(guessField.value);
   guesses.innerHTML += userGuess + " ";
@@ -61,5 +67,6 @@ function disableForm() {
   guessSubmit.setAttribute("disabled", "disabled"); 
 }
 guessSubmit.onclick = checkGuess;
+Godmode.onclick = actgm;
   </script>
 </html>
