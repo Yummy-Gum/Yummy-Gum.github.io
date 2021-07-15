@@ -1,0 +1,114 @@
+<!DOCTYPE html> 
+
+<html> 
+<head> 
+   <meta charset="utf-8"> 
+   <title>Yuhao's Presentation</title> 
+<style>
+
+</style> 
+</head>
+<body>
+
+<canvas id ='hi' width ="900" height = "600" style = "background-color: orange; position: absolute; left: 0px" ></canvas>
+<script>
+var sizes = 50
+var pen
+var xthing
+var ything
+var oldx =[]
+var oldy=[]
+var ctx = hi.getContext('2d')
+ctx.strokeStyle ="blue"
+ctx.fillStyle="blue"
+ctx.fillRect(0,0,30,30)
+ctx.fillStyle="white"
+ctx.fillRect(30,0,30,30)
+var actualhi = hi.getBoundingClientRect()
+
+function MyTouchMoveHandler(MyEvent) {
+  /*ctx.clearRect(0, 0, 900, 70); 
+  ctx.fillText("X=" + xthing, 0, 20);
+  ctx.fillText("Y=" + ything, 0, 40);*/
+xthing = MyEvent.touches[0].clientX-actualhi.left
+ything = MyEvent.touches[0].clientY-actualhi.top
+if (pen == true) {
+oldx.push(xthing)
+oldy.push(ything)
+ctx.beginPath()
+if (oldx.length<2){
+ctx.moveTo(oldx[0])
+ctx.moveTo(oldy[0])
+}else{
+ctx.moveTo(oldx[oldx.length-2],oldy[oldy.length-2])
+
+ctx.lineTo(oldx[oldx.length-1],oldy[oldy.length-1])
+}
+ctx.stroke()
+}
+
+if (pen == false) {
+
+ctx.clearRect(xthing-sizes/2,ything-sizes/2,sizes,sizes)
+
+DollyisBack()
+}
+
+
+
+
+  MyEvent.preventDefault()
+  }
+/*function dostuff() {
+if (pen == true){
+if (oldx.length<2){
+ctx.moveTo(oldx[0])
+ctx.moveTo(oldy[0])
+}else{
+ctx.moveTo(oldx[oldx.length-2],oldy[oldy.length-2])
+
+ctx.lineTo(oldx[oldx.length-1],oldy[oldy.length-1])
+}
+ctx.stroke()
+}
+if (pen == false) {
+ctx.clearRect(xthing-5,ything-5,xthing+5,ything+5)
+}
+}*/
+function dosomething(things) {
+
+var t
+
+things.preventDefault()
+
+for (t=0;t<things.touches.length;t++) {
+if (things.touches[t].clientX -actualhi.left < 61 && things.touches[t].clientX -actualhi.left> 31 && things.touches[t].clientY -actualhi.top< 31 && things.touches[t].clientY -actualhi.top> 0) {
+pen = false
+
+}
+if (things.touches[t].clientX -actualhi.left < 31){ ;if (things.touches[t].clientX -actualhi.left> 0){; if (things.touches[t].clientY -actualhi.top< 31){;if (things.touches[t].clientY -actualhi.top> 0){
+pen = true
+
+}}}}
+
+}
+}
+
+function DollyisBack(){
+oldx.splice(0,oldx.length+2)
+oldy.splice(0,oldy.length+2)
+
+}
+
+hi.addEventListener("touchend", DollyisBack)
+
+hi.addEventListener("touchstart", dosomething)
+
+hi.addEventListener("touchmove", MyTouchMoveHandler); 
+
+
+   </script>
+
+
+</body> 
+</html>
