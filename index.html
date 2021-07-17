@@ -11,13 +11,14 @@
 <p id="guesses" style = "color: white"></p>
 <p id="lastResult" style = "color: white"></p>
 <p id="lowOrHi" style = "color: white"></p>
-<a href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" id = "elink" style ="color: white"></a>
 <div class="form">
   <label for="guessField" style = "color: white">Enter your next guess: </label><input type="Number" id="guessField">
   <button id="guessSubmit">Enter Guess</button>
 
 
  <button id="Godmode">Activate God Mode</button>
+
+ <a href="https://yummy-gum.github.io/Pen.html"></a>
 </div>
 
 
@@ -46,7 +47,7 @@ function checkGuess() {
       lastResult.innerHTML = "Congratulations! You got it right!";
       lowOrHi.innerHTML = "";
       disableForm();
-      elink.innerHTML = "CLICK HERE";
+      window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 
     } else {
       lastResult.innerHTML = "Wrong!";
