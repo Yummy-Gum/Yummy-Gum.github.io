@@ -12,19 +12,21 @@
 
 <canvas id ='hi' width ="900" height = "600" style = "background-color: orange; position: absolute; left: 0px" ></canvas>
 <script>
-var sizes = 50
-var pen
-var xthing
-var ything
-var oldx =[]
-var oldy=[]
-var ctx = hi.getContext('2d')
-ctx.strokeStyle ="blue"
-ctx.fillStyle="blue"
-ctx.fillRect(0,0,30,30)
-ctx.fillStyle="white"
-ctx.fillRect(30,0,30,30)
-var actualhi = hi.getBoundingClientRect()
+var sizes = 50;
+var pen;
+var xthing;
+var ything;
+var oldx =[];
+var oldy=[];
+var ctx = hi.getContext('2d');
+
+var actualhi = hi.getBoundingClientRect();
+hi.width = window.innerWidth;
+ctx.strokeStyle ="blue";
+ctx.fillStyle="blue";
+ctx.fillRect(0,0,30,30);
+ctx.fillStyle="white";
+ctx.fillRect(30,0,30,30);
 
 function MyTouchMoveHandler(MyEvent) {
   /*ctx.clearRect(0, 0, 900, 70); 
