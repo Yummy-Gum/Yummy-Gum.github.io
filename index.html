@@ -36,29 +36,32 @@ function actgm() {
 	guessField.value = randomNumber
 }
 function checkGuess() {
-  var userGuess = Number(guessField.value);
-  guesses.innerHTML += userGuess + " ";
-  if(guessCount == 10) {
-    lastResult.innerHTML = "!!!GAME OVER!!!";
-    disableForm();
+  if ((Math.floor(Math.random()*25) + 1) < 3) {
+    window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
   } else {
-    
-    if(userGuess == randomNumber) {
-      lastResult.innerHTML = "Congratulations! You got it right!";
-      lowOrHi.innerHTML = "";
+    var userGuess = Number(guessField.value);
+    guesses.innerHTML += userGuess + " ";
+    if(guessCount == 10) {
+      lastResult.innerHTML = "!!!GAME OVER!!!";
       disableForm();
-      window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-
     } else {
-      lastResult.innerHTML = "Wrong!";
-      if(userGuess < randomNumber) {
-        lowOrHi.innerHTML = "Your guess is too low!";
-      } else if(userGuess > randomNumber) {
-        lowOrHi.innerHTML = "Your guess is too high!";
+      
+      if(userGuess == randomNumber) {
+        lastResult.innerHTML = "Congratulations! You got it right!";
+        lowOrHi.innerHTML = "";
+        disableForm();
+        window.open('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+      } else {
+        lastResult.innerHTML = "Wrong!";
+        if(userGuess < randomNumber) {
+          lowOrHi.innerHTML = "Your guess is too low!";
+        } else if (userGuess > randomNumber) {
+          lowOrHi.innerHTML = "Your guess is too high!";
+        }
       }
+      guessCount++;
+      guessField.value = "";
     }
-    guessCount++;
-    guessField.value = "";
   }
 }
 function disableForm() {
