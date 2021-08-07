@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<h1 id = "1"></h1>
+<h1 id = "2"></h1>
+<h1 id = "3"></h1>
+<h1 id = "4"></h1>
+<body>
+	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(200,198,200);" ></canvas>
+	<script type="text/javascript">
+		var ctx = canva.getContext('2d');
+		function generate() {
+			var temporary = true;
+			i = 0
+			while (i<16) {
+				if (grid[i] == 0) {
+					temporary = false;
+					break;
+				}
+				i += 1;
+			}
+			if (temporary == false) {
+				while (true) {
+					i = Math.floor(Math.random()*16);
+					if (grid[i] == 0){
+						grid[i] = 2;
+						break;
+					}
+				}
+			} else {
+				alert("game over")
+			}
+		}
+		function updateGrid() {
+			var colour;
+		  	i = 0;
+		  	while (i<4) {
+		  		j = 0;
+		  		while (j < 4) {
+		  			colour = grid[i*4 + j];
+		  			if (colour == 0) {
+		  				ctx.fillStyle = "rgb(255,255,255)";
+		  			}
+		  			if (colour == 2) {
+		  				ctx.fillStyle = "rgb(200,200,200)";
+		  			}
+		  			if (colour == 1) {
+		  				ctx.fillStyle = "rgb(140,140,140)";
+		  			}
+		  			if (colour == 0.5) {
+		  				ctx.fillStyle = "rgb(180,140,100)";
+		  			}
+		  			if (colour == 0.25) {
+		  				ctx.fillStyle = "rgb(220,180,50)";
+		  			}
+		  			if (colour == 0.125) {
+		  				ctx.fillStyle = "rgb(255,200,10)";
+		  			}
+		  			if (colour == 0.0625) {
+		  				ctx.fillStyle = "rgb(255,255,10)";
+		  			}
+		  			if (colour < 0.0625 && colour != 0) {
+		  				ctx.fillStyle = "rgb(0,255,0)"
+		  			}
+		  			ctx.fillRect(j*100,i*100,j*100+100,i*100+100);
+		  			j+=1;
+		  		}
+		  		i += 1
+		  	}
+		}
+
+
+
+
+
+		
+		var i;
+		var j;
+		var k;
+		const grid = 
+	   [0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+		0,0,0,0,
+
+		0,0,0,0];
+
+		generate()
+		generate()
+		updateGrid()
+		function uniKeyCode(event) {
+		  	var key = event.keyCode;
+		  	/*if (key == 37 || key == 38 || key == 39 || key == 40) {
+		  		
+		  	}*/
+		  	if (key == 40) { //down
+
+		  		i = 3
+		  		while (i > -1) {
+		  			j = 0
+		   			while (j < 4) {
+						k = 0;
+		  				while (k < 3-i) {
+		  					if (0==grid[((i+k+1)*4)+j]) {
+		  						k += 1;
+			  					grid[((i+k)*4)+j] = grid[((i+k-1)*4)+j];
+			  					grid[((i+k-1)*4)+j] = 0;
+			  				} else {
+			  					break;
+			  				}
+		  				}
+		  				if (grid[((i+k)*4)+j]==grid[((i+k+1)*4)+j]) {
+		  					grid[((i+k+1)*4)+j] = grid[((i+k)*4)+j]/2;
+							grid[((i+k)*4)+j] = 0;
+		  				}
+		  				j += 1;
+		  			}
+		  			i -= 1
+		  		}
+		  	}
+		  	if (key == 39) { //right
+		  		j = 0;
+		  		while (j < 4) {
+		  			i = 3;
+		   			while (i > -1) {
+						k = 0;
+		  				while (k < 3-i) {
+		  					if (0==grid[((i+k+1))+j*4]) {
+		  						k += 1;
+			  					grid[((i+k))+j*4] = grid[((i+k-1))+j*4];
+			  					grid[((i+k-1))+j*4] = 0;
+			  				} else {
+			  					break;
+			  				}
+		  				}
+		  				if (grid[((i+k))+j*4]==grid[((i+k+1))+j*4] && i+k != 3) {
+		  					grid[((i+k+1))+j*4] = grid[((i+k))+j*4]/2;
+							grid[((i+k))+j*4] = 0;
+		  				}
+		  				i -= 1;
+		  			}
+		  			j += 1;
+		  		}
+		  	}
+		  	if (key == 38) { //up
+		  		i = 0;
+		  		while (i < 4) {
+		  			j = 0;
+		   			while (j < 4) {
+						k = 0;
+		  				while (k < i) {
+		  					if (0==grid[((i-k-1))*4+j]) {
+		  						k += 1;
+			  					grid[((i-k))*4+j] = grid[((i-k+1))*4+j];
+			  					grid[((i-k+1))*4+j] = 0;
+			  				} else {
+			  					break;
+			  				}
+		  				}
+		  				if (grid[((i-k))*4+j]==grid[((i-k-1))*4+j] && i-k != 0) {
+		  					grid[((i-k-1))*4+j] = grid[((i-k))*4+j]/2;
+							grid[((i-k))*4+j] = 0;
+		  				}
+		  				j += 1;
+		  			}
+		  			i += 1;
+		  		}
+		  	}
+		  	if (key == 37) { //left
+		  		j = 3;
+		  		while (j > -1) {
+		  			i = 0;
+		   			while (i < 4) {
+						k = 0;
+		  				while (k < i) {
+		  					if (0==grid[((i-k-1))+j*4]) {
+		  						k += 1;
+			  					grid[((i-k))+j*4] = grid[((i-k+1))+j*4];
+			  					grid[((i-k+1))+j*4] = 0;
+			  				} else {
+			  					break;
+			  				}
+		  				}
+		  				if (grid[((i-k))+j*4]==grid[((i-k-1))+j*4] && i-k != 0) {
+		  					grid[((i-k-1))+j*4] = grid[((i-k))+j*4]/2;
+							grid[((i-k))+j*4] = 0;
+		  				}
+		  				i += 1;
+		  			}
+		  			j -= 1;
+		  		}
+		  	}
+		  	generate()
+		  	updateGrid()
+		}
+		document.addEventListener("keydown", uniKeyCode);
+	</script>
+</body>
+</html>
