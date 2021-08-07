@@ -10,10 +10,16 @@
 <body>
 	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(200,198,200);" ></canvas>
 	<script type="text/javascript">
-		var death = false;
+		var ddeath = false;
 		var ldeath = false;
+		var rdeath = false;
+		var udeath = false;
 		var ctx = canva.getContext('2d');
 		function generate() {
+			ldeath = false;
+			ddeath = false;
+			rdeath = false;
+			udeath = false;
 			var temporary = true;
 			i = 0
 			while (i<16) {
@@ -104,7 +110,7 @@
 		  		
 		  	}*/
 		  	if (key == 40) { //down
-		  		death = true;
+		  		ddeath = true;
 		  		i = 3
 		  		while (i > -1) {
 		  			j = 0
@@ -115,8 +121,10 @@
 		  						k += 1;
 			  					grid[((i+k)*4)+j] = grid[((i+k-1)*4)+j];
 			  					grid[((i+k-1)*4)+j] = 0;
-			  					death = false;
+			  					ddeath = false;
 			  					ldeath = false;
+								rdeath = false;
+								udeath = false;
 			  				} else {
 			  					break;
 			  				}
@@ -124,8 +132,10 @@
 		  				if (grid[((i+k)*4)+j]==grid[((i+k+1)*4)+j] && 0!=grid[((i+k)*4)+j]) {
 		  					grid[((i+k+1)*4)+j] = grid[((i+k)*4)+j]/2;
 							grid[((i+k)*4)+j] = 0;
-							death = false;
+							ddeath = false;
 							ldeath = false;
+							rdeath = false;
+							udeath = false;
 		  				}
 		  				j += 1;
 		  			}
@@ -133,7 +143,7 @@
 		  		}
 		  	}
 		  	if (key == 39) { //right
-		  		ldeath = true;
+		  		rdeath = true;
 		  		j = 0;
 		  		while (j < 4) {
 		  			i = 3;
@@ -145,7 +155,9 @@
 			  					grid[((i+k))+j*4] = grid[((i+k-1))+j*4];
 			  					grid[((i+k-1))+j*4] = 0;
 			  					ldeath = false;
-			  					death = false;
+			  					ddeath = false;
+								rdeath = false;
+								udeath = false;
 			  				} else {
 			  					break;
 			  				}
@@ -154,7 +166,9 @@
 		  					grid[((i+k+1))+j*4] = grid[((i+k))+j*4]/2;
 							grid[((i+k))+j*4] = 0;
 							ldeath = false;
-							death = false;
+							ddeath = false;
+							rdeath = false;
+							udeath = false;
 		  				}
 		  				i -= 1;
 		  			}
@@ -162,7 +176,7 @@
 		  		}
 		  	}
 		  	if (key == 38) { //up
-		  		death = true;
+		  		udeath = true;
 		  		i = 0;
 		  		while (i < 4) {
 		  			j = 0;
@@ -173,8 +187,10 @@
 		  						k += 1;
 			  					grid[((i-k))*4+j] = grid[((i-k+1))*4+j];
 			  					grid[((i-k+1))*4+j] = 0;
-			  					death = false;
-			  					ldeath = false;
+			  					ddeath = false;
+								ldeath = false;
+								rdeath = false;
+								udeath = false;
 			  				} else {
 			  					break;
 			  				}
@@ -182,8 +198,10 @@
 		  				if (grid[((i-k))*4+j]==grid[((i-k-1))*4+j] && i-k != 0 && 0!=grid[((i-k)*4)+j]) {
 		  					grid[((i-k-1))*4+j] = grid[((i-k))*4+j]/2;
 							grid[((i-k))*4+j] = 0;
-							death = false;
+							ddeath = false;
 							ldeath = false;
+							rdeath = false;
+							udeath = false;
 		  				}
 		  				j += 1;
 		  			}
@@ -203,7 +221,9 @@
 			  					grid[((i-k))+j*4] = grid[((i-k+1))+j*4];
 			  					grid[((i-k+1))+j*4] = 0;
 			  					ldeath = false;
-			  					death = false;
+			  					ddeath = false;
+								rdeath = false;
+								udeath = false;
 			  				} else {
 			  					break;
 			  				}
@@ -212,18 +232,20 @@
 		  					grid[((i-k-1))+j*4] = grid[((i-k))+j*4]/2;
 							grid[((i-k))+j*4] = 0;
 							ldeath = false;
-							death = false;
+							ddeath = false;
+							rdeath = false;
+							udeath = false;
 		  				}
 		  				i += 1;
 		  			}
 		  			j -= 1;
 		  		}
 		  	}
-		  	if (ldeath == false && death == false) {
+		  	if (ldeath == false && ddeath == false && udeath == false && rdeath == false) {
 		  		generate()
 		  		updateGrid()
 		  	} 
-		  	if (ldeath == true && death == true) {
+		  	if (ldeath == true && ddeath == true && udeath == true && rdeath == true) {
 		  		generate()
 		  	}
 		}
