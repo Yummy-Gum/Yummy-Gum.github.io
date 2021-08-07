@@ -14,7 +14,30 @@
 		var ldeath = false;
 		var rdeath = false;
 		var udeath = false;
+		var up;
+		var right;
+		var left;
+		var down;
 		var ctx = canva.getContext('2d');
+		var actualhi = hi.getBoundingClientRect();
+		function dosomething(event) {
+			if (event.touches[t].clientX - actualhi.left < 350 && event.touches[t].clientX -actualhi.left > 50 && event.touches[t].clientY -actualhi.top< 50 && event.touches[t].clientY -actualhi.top> 0) {
+					up = true
+
+			}
+			if (event.touches[t].clientX - actualhi.left < 400 && event.touches[t].clientX -actualhi.left > 350 && event.touches[t].clientY -actualhi.top< 350 && event.touches[t].clientY -actualhi.top> 50) {
+					right = true
+
+			}
+			if (event.touches[t].clientX - actualhi.left < 50 && event.touches[t].clientX -actualhi.left > 0 && event.touches[t].clientY -actualhi.top< 350 && event.touches[t].clientY -actualhi.top> 50) {
+					left = true
+
+			}
+			if (event.touches[t].clientX - actualhi.left < 350 && event.touches[t].clientX -actualhi.left > 50 && event.touches[t].clientY -actualhi.top< 400 && event.touches[t].clientY -actualhi.top> 350) {
+					down = true
+
+			}
+		}
 		function generate() {
 			ldeath = false;
 			ddeath = false;
@@ -109,7 +132,8 @@
 		  	/*if (key == 37 || key == 38 || key == 39 || key == 40) {
 		  		
 		  	}*/
-		  	if (key == 40) { //down
+		  	if (key == 40 || down == true) { //down
+		  		down = false;
 		  		ddeath = true;
 		  		i = 3
 		  		while (i > -1) {
@@ -142,8 +166,9 @@
 		  			i -= 1
 		  		}
 		  	}
-		  	if (key == 39) { //right
+		  	if (key == 39 || right == true) { //right
 		  		rdeath = true;
+		  		right = false;
 		  		j = 0;
 		  		while (j < 4) {
 		  			i = 3;
@@ -175,7 +200,8 @@
 		  			j += 1;
 		  		}
 		  	}
-		  	if (key == 38) { //up
+		  	if (key == 38 || up == true) { //up
+		  		up = false;
 		  		udeath = true;
 		  		i = 0;
 		  		while (i < 4) {
@@ -208,8 +234,9 @@
 		  			i += 1;
 		  		}
 		  	}
-		  	if (key == 37) { //left
+		  	if (key == 37 || left == true) { //left
 		  		ldeath = true;
+		  		left = false;
 		  		j = 3;
 		  		while (j > -1) {
 		  			i = 0;
@@ -250,6 +277,7 @@
 		  	}
 		}
 		document.addEventListener("keydown", uniKeyCode);
+		document.addEventListener("touchstart", dosomething);
 	</script>
 </body>
 </html>
