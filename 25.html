@@ -7,11 +7,12 @@
 <h1 id = "2"></h1>
 <h1 id = "3"></h1>
 <h1 id = "4"></h1>
-<body>
+<body style = "background-color: rgb(255,255,230)">
 	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(200,198,200);position: absolute; left: 0px; top: 0px" ></canvas>
 	<script type="text/javascript">
 		var wx = window.innerWidth;
 		var wy = window.innerHeight;
+		canva.style.left = (wx-400)/2 + "px";
 		var ddeath = false;
 		var x;
 		var click = false;
@@ -25,7 +26,7 @@
 		var down = false;
 		var ctx = canva.getContext('2d');
 		var actualhi = canva.getBoundingClientRect();
-		canva.preventDefault()
+		//canva.preventDefault()
 		function dosomething(event) {
 			x = event.touches[0].clientX - actualhi.left;
 			y = event.touches[0].clientY -actualhi.top;
@@ -269,13 +270,15 @@
 		  			j -= 1;
 		  		}
 		  	}
-		  	if (ldeath == false && ddeath == false && udeath == false && rdeath == false) {
-		  		generate()
-		  		updateGrid()
-		  	} 
-		  	if (ldeath == true && ddeath == true && udeath == true && rdeath == true) {
-		  		generate()
-		  	}
+		  	if (key == 37 || key == 38 || key == 39 || key == 40) {
+			  	if (ldeath == false && ddeath == false && udeath == false && rdeath == false) {
+			  		generate()
+			  		updateGrid()
+			  	} 
+			  	if (ldeath == true && ddeath == true && udeath == true && rdeath == true) {
+			  		generate()
+			  	}
+			}
 		}
 
 
