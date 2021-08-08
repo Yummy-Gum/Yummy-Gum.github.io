@@ -11,6 +11,8 @@
 	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(200,198,200);" ></canvas>
 	<script type="text/javascript">
 		var ddeath = false;
+		var x;
+		var y;
 		var ldeath = false;
 		var rdeath = false;
 		var udeath = false;
@@ -21,19 +23,21 @@
 		var ctx = canva.getContext('2d');
 		var actualhi = canva.getBoundingClientRect();
 		function dosomething(event) {
-			if (event.touches[0].clientX - actualhi.left < 300 && event.touches[0].clientX -actualhi.left > 100 && event.touches[0].clientY -actualhi.top< 100 && event.touches[0].clientY -actualhi.top> 0) {
+			x = event.touches[0].clientX - actualhi.left;
+			y = event.touches[0].clientY -actualhi.top;
+			if (y > 0 && ((y < x && x > 0 && x < 200) || (y < (400 - x) && x > 200 && x < 400))) {
 					up = true
 
 			}
-			if (event.touches[0].clientX - actualhi.left < 400 && event.touches[0].clientX -actualhi.left > 300 && event.touches[0].clientY -actualhi.top< 300 && event.touches[0].clientY -actualhi.top> 100) {
+			if (x < 400 && ((x > y && y > 200 && y < 400) || (x > (400 - y) && y > 0 && y < 200))) {
 					right = true
 
 			}
-			if (event.touches[0].clientX - actualhi.left < 100 && event.touches[0].clientX -actualhi.left > 0 && event.touches[0].clientY -actualhi.top< 300 && event.touches[0].clientY -actualhi.top> 100) {
+			if (x > 0 && ((x < y && y > 0 && y < 200) || (x < (400 - y) && y > 200 && y < 400))) {
 					left = true
 
 			}
-			if (event.touches[0].clientX - actualhi.left < 300 && event.touches[0].clientX -actualhi.left > 100 && event.touches[0].clientY -actualhi.top< 400 && event.touches[0].clientY -actualhi.top> 300) {
+			if (y < 400 && ((y > x && x < 400 && x > 200) || (y > (400 - x) && x > 0 && x < 200))) {
 					down = true
 
 			}
@@ -408,13 +412,15 @@
 		  			j -= 1;
 		  		}
 		  	}
-		  	if (ldeath == false && ddeath == false && udeath == false && rdeath == false) {
-		  		generate()
-		  		updateGrid()
-		  	} 
-		  	if (ldeath == true && ddeath == true && udeath == true && rdeath == true) {
-		  		generate()
-		  	}
+		  	if (right == true || left == true || up == true || down == true) {
+			  	if (ldeath == false && ddeath == false && udeath == false && rdeath == false) {
+			  		generate()
+			  		updateGrid()
+			  	} 
+			  	if (ldeath == true && ddeath == true && udeath == true && rdeath == true) {
+			  		generate()
+			  	}
+			}
 		}
 		document.addEventListener("keydown", uniKeyCode);
 		document.getElementById("canva").addEventListener("touchstart", dosomething);
