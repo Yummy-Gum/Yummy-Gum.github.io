@@ -37,8 +37,7 @@
 					down = true
 
 			}
-			alert("hi")
-			uniKeyCode()
+			touchhandling()
 		}
 		function generate() {
 			ldeath = false;
@@ -125,13 +124,155 @@
 		0,0,0,0,
 
 		0,0,0,0];
-
 		generate()
 		generate()
 		updateGrid()
 		function uniKeyCode(event) {
 		  	var key = event.keyCode;
-		  	if (key == 40 || down == true) { //down
+		  	if (key == 40) { //down
+		  		ddeath = true;
+		  		i = 3
+		  		while (i > -1) {
+		  			j = 0
+		   			while (j < 4) {
+						k = 0;
+		  				while (k < 3-i) {
+		  					if (0==grid[((i+k+1)*4)+j] && 0!=grid[((i+k)*4)+j]) {
+		  						k += 1;
+			  					grid[((i+k)*4)+j] = grid[((i+k-1)*4)+j];
+			  					grid[((i+k-1)*4)+j] = 0;
+			  					ddeath = false;
+			  					ldeath = false;
+								rdeath = false;
+								udeath = false;
+			  				} else {
+			  					break;
+			  				}
+		  				}
+		  				if (grid[((i+k)*4)+j]==grid[((i+k+1)*4)+j] && 0!=grid[((i+k)*4)+j]) {
+		  					grid[((i+k+1)*4)+j] = grid[((i+k)*4)+j]/2;
+							grid[((i+k)*4)+j] = 0;
+							ddeath = false;
+							ldeath = false;
+							rdeath = false;
+							udeath = false;
+		  				}
+		  				j += 1;
+		  			}
+		  			i -= 1
+		  		}
+		  	}
+		  	if (key == 39) { //right
+		  		rdeath = true;
+		  		j = 0;
+		  		while (j < 4) {
+		  			i = 3;
+		   			while (i > -1) {
+						k = 0;
+		  				while (k < 3-i) {
+		  					if (0==grid[((i+k+1))+j*4] && 0!=grid[((i+k))+j*4]) {
+		  						k += 1;
+			  					grid[((i+k))+j*4] = grid[((i+k-1))+j*4];
+			  					grid[((i+k-1))+j*4] = 0;
+			  					ldeath = false;
+			  					ddeath = false;
+								rdeath = false;
+								udeath = false;
+			  				} else {
+			  					break;
+			  				}
+		  				}
+		  				if (grid[((i+k))+j*4]==grid[((i+k+1))+j*4] && i+k != 3 && 0!=grid[((i+k))+j*4]) {
+		  					grid[((i+k+1))+j*4] = grid[((i+k))+j*4]/2;
+							grid[((i+k))+j*4] = 0;
+							ldeath = false;
+							ddeath = false;
+							rdeath = false;
+							udeath = false;
+		  				}
+		  				i -= 1;
+		  			}
+		  			j += 1;
+		  		}
+		  	}
+		  	if (key == 38) { //up
+		  		udeath = true;
+		  		i = 0;
+		  		while (i < 4) {
+		  			j = 0;
+		   			while (j < 4) {
+						k = 0;
+		  				while (k < i) {
+		  					if (0==grid[((i-k-1))*4+j] && 0!=grid[((i-k)*4)+j]) {
+		  						k += 1;
+			  					grid[((i-k))*4+j] = grid[((i-k+1))*4+j];
+			  					grid[((i-k+1))*4+j] = 0;
+			  					ddeath = false;
+								ldeath = false;
+								rdeath = false;
+								udeath = false;
+			  				} else {
+			  					break;
+			  				}
+		  				}
+		  				if (grid[((i-k))*4+j]==grid[((i-k-1))*4+j] && i-k != 0 && 0!=grid[((i-k)*4)+j]) {
+		  					grid[((i-k-1))*4+j] = grid[((i-k))*4+j]/2;
+							grid[((i-k))*4+j] = 0;
+							ddeath = false;
+							ldeath = false;
+							rdeath = false;
+							udeath = false;
+		  				}
+		  				j += 1;
+		  			}
+		  			i += 1;
+		  		}
+		  	}
+		  	if (key == 37) { //left
+		  		ldeath = true;
+		  		j = 3;
+		  		while (j > -1) {
+		  			i = 0;
+		   			while (i < 4) {
+						k = 0;
+		  				while (k < i) {
+		  					if (0==grid[((i-k-1))+j*4] && 0!=grid[((i-k))+j*4]) {
+		  						k += 1;
+			  					grid[((i-k))+j*4] = grid[((i-k+1))+j*4];
+			  					grid[((i-k+1))+j*4] = 0;
+			  					ldeath = false;
+			  					ddeath = false;
+								rdeath = false;
+								udeath = false;
+			  				} else {
+			  					break;
+			  				}
+		  				}
+		  				if (grid[((i-k))+j*4]==grid[((i-k-1))+j*4] && i-k != 0 && 0!=grid[((i-k))+j*4]) {
+		  					grid[((i-k-1))+j*4] = grid[((i-k))+j*4]/2;
+							grid[((i-k))+j*4] = 0;
+							ldeath = false;
+							ddeath = false;
+							rdeath = false;
+							udeath = false;
+		  				}
+		  				i += 1;
+		  			}
+		  			j -= 1;
+		  		}
+		  	}
+		  	if (ldeath == false && ddeath == false && udeath == false && rdeath == false) {
+		  		generate()
+		  		updateGrid()
+		  	} 
+		  	if (ldeath == true && ddeath == true && udeath == true && rdeath == true) {
+		  		generate()
+		  	}
+		}
+
+
+		function touchhandling() {
+		  	if (down == true) { //down
 		  		down = false;
 		  		ddeath = true;
 		  		i = 3
@@ -165,7 +306,7 @@
 		  			i -= 1
 		  		}
 		  	}
-		  	if (key == 39 || right == true) { //right
+		  	if (right == true) { //right
 		  		rdeath = true;
 		  		right = false;
 		  		j = 0;
@@ -199,7 +340,7 @@
 		  			j += 1;
 		  		}
 		  	}
-		  	if (key == 38 || up == true) { //up
+		  	if (up == true) { //up
 		  		up = false;
 		  		udeath = true;
 		  		i = 0;
@@ -233,7 +374,7 @@
 		  			i += 1;
 		  		}
 		  	}
-		  	if (key == 37 || left == true) { //left
+		  	if (left == true) { //left
 		  		ldeath = true;
 		  		left = false;
 		  		j = 3;
