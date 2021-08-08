@@ -14,12 +14,12 @@
 		var ldeath = false;
 		var rdeath = false;
 		var udeath = false;
-		var up;
-		var right;
-		var left;
-		var down;
+		var up = false;
+		var right = false;
+		var left = false;
+		var down = false;
 		var ctx = canva.getContext('2d');
-		var actualhi = hi.getBoundingClientRect();
+		var actualhi = canva.getBoundingClientRect();
 		function dosomething(event) {
 			if (event.touches[t].clientX - actualhi.left < 350 && event.touches[t].clientX -actualhi.left > 50 && event.touches[t].clientY -actualhi.top< 50 && event.touches[t].clientY -actualhi.top> 0) {
 					up = true
@@ -129,9 +129,6 @@
 		updateGrid()
 		function uniKeyCode(event) {
 		  	var key = event.keyCode;
-		  	/*if (key == 37 || key == 38 || key == 39 || key == 40) {
-		  		
-		  	}*/
 		  	if (key == 40 || down == true) { //down
 		  		down = false;
 		  		ddeath = true;
