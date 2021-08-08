@@ -21,19 +21,19 @@
 		var ctx = canva.getContext('2d');
 		var actualhi = canva.getBoundingClientRect();
 		function dosomething(event) {
-			if (event.touches[t].clientX - actualhi.left < 350 && event.touches[t].clientX -actualhi.left > 50 && event.touches[t].clientY -actualhi.top< 50 && event.touches[t].clientY -actualhi.top> 0) {
+			if (event.touches[0].clientX - actualhi.left < 300 && event.touches[0].clientX -actualhi.left > 100 && event.touches[0].clientY -actualhi.top< 100 && event.touches[0].clientY -actualhi.top> 0) {
 					up = true
 
 			}
-			if (event.touches[t].clientX - actualhi.left < 400 && event.touches[t].clientX -actualhi.left > 350 && event.touches[t].clientY -actualhi.top< 350 && event.touches[t].clientY -actualhi.top> 50) {
+			if (event.touches[0].clientX - actualhi.left < 400 && event.touches[0].clientX -actualhi.left > 300 && event.touches[0].clientY -actualhi.top< 300 && event.touches[0].clientY -actualhi.top> 100) {
 					right = true
 
 			}
-			if (event.touches[t].clientX - actualhi.left < 50 && event.touches[t].clientX -actualhi.left > 0 && event.touches[t].clientY -actualhi.top< 350 && event.touches[t].clientY -actualhi.top> 50) {
+			if (event.touches[0].clientX - actualhi.left < 100 && event.touches[0].clientX -actualhi.left > 0 && event.touches[0].clientY -actualhi.top< 300 && event.touches[0].clientY -actualhi.top> 100) {
 					left = true
 
 			}
-			if (event.touches[t].clientX - actualhi.left < 350 && event.touches[t].clientX -actualhi.left > 50 && event.touches[t].clientY -actualhi.top< 400 && event.touches[t].clientY -actualhi.top> 350) {
+			if (event.touches[0].clientX - actualhi.left < 300 && event.touches[0].clientX -actualhi.left > 100 && event.touches[0].clientY -actualhi.top< 400 && event.touches[0].clientY -actualhi.top> 300) {
 					down = true
 
 			}
