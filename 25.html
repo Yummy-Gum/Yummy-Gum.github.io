@@ -8,8 +8,10 @@
 <h1 id = "3"></h1>
 <h1 id = "4"></h1>
 <body>
-	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(200,198,200);" ></canvas>
+	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(200,198,200);position: absolute; left: 0px; top: 0px" ></canvas>
 	<script type="text/javascript">
+		var wx = window.innerWidth;
+		var wy = window.innerHeight;
 		var ddeath = false;
 		var x;
 		var click = false;
@@ -23,6 +25,7 @@
 		var down = false;
 		var ctx = canva.getContext('2d');
 		var actualhi = canva.getBoundingClientRect();
+		canva.preventDefault()
 		function dosomething(event) {
 			x = event.touches[0].clientX - actualhi.left;
 			y = event.touches[0].clientY -actualhi.top;
