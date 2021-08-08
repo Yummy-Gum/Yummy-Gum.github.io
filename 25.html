@@ -12,6 +12,7 @@
 	<script type="text/javascript">
 		var ddeath = false;
 		var x;
+		var click = false;
 		var y;
 		var ldeath = false;
 		var rdeath = false;
@@ -27,19 +28,19 @@
 			y = event.touches[0].clientY -actualhi.top;
 			if (y > 0 && ((y < x && x > 0 && x < 200) || (y < (400 - x) && x > 200 && x < 400))) {
 					up = true
-
+					click = true
 			}
 			if (x < 400 && ((x > y && y > 200 && y < 400) || (x > (400 - y) && y > 0 && y < 200))) {
 					right = true
-
+					click = true
 			}
 			if (x > 0 && ((x < y && y > 0 && y < 200) || (x < (400 - y) && y > 200 && y < 400))) {
 					left = true
-
+					click = true
 			}
 			if (y < 400 && ((y > x && x < 400 && x > 200) || (y > (400 - x) && x > 0 && x < 200))) {
 					down = true
-
+					click = true
 			}
 			touchhandling()
 		}
@@ -412,8 +413,8 @@
 		  			j -= 1;
 		  		}
 		  	}
-		  	alert("hi")
-		  	if (right == true || left == true || up == true || down == true) {
+		  	if (click == true) {
+		  		click = false
 			  	if (ldeath == false && ddeath == false && udeath == false && rdeath == false) {
 			  		generate()
 			  		updateGrid()
