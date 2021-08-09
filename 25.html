@@ -12,7 +12,9 @@
 	<script type="text/javascript">
 		var wx = window.innerWidth;
 		var wy = window.innerHeight;
-		canva.style.left = (wx-400)/2 + "px";
+		canva.style.left = (wx-wy)/2 + "px";
+		canva.width = wy;
+		canva.height = wy;
 		var ddeath = false;
 		var x;
 		var click = false;
@@ -30,19 +32,19 @@
 		function dosomething(event) {
 			x = event.touches[0].clientX - actualhi.left;
 			y = event.touches[0].clientY -actualhi.top;
-			if (y > 0 && ((y < x && x > 0 && x < 200) || (y < (400 - x) && x > 200 && x < 400))) {
+			if (y > 0 && ((y < x && x > 0 && x < (wy/2)) || (y < (wy - x) && x > (wy/2) && x < wy))) {
 					up = true
 					click = true
 			}
-			if (x < 400 && ((x > y && y > 200 && y < 400) || (x > (400 - y) && y > 0 && y < 200))) {
+			if (x < wy && ((x > y && y > (wy/2) && y < wy) || (x > (wy - y) && y > 0 && y < (wy/2)))) {
 					right = true
 					click = true
 			}
-			if (x > 0 && ((x < y && y > 0 && y < 200) || (x < (400 - y) && y > 200 && y < 400))) {
+			if (x > 0 && ((x < y && y > 0 && y < (wy/2)) || (x < ((wy/2) - y) && y > (wy/2) && y < wy))) {
 					left = true
 					click = true
 			}
-			if (y < 400 && ((y > x && x < 400 && x > 200) || (y > (400 - x) && x > 0 && x < 200))) {
+			if (y < wy && ((y > x && x < wy && x > (wy/2)) || (y > (wy - x) && x > 0 && x < (wy/2)))) {
 					down = true
 					click = true
 			}
@@ -105,12 +107,12 @@
 		  			if (colour < 0.0625 && colour != 0) {
 		  				ctx.fillStyle = "rgb(0,255,0)"
 		  			}
-		  			ctx.fillRect(j*100,i*100,j*100+100,i*100+100);
+		  			ctx.fillRect(j*(wy/4),i*(wy/4),j*(wy/4)+(wy/4),i*(wy/4)+(wy/4));
 		  			if (grid[i*4 +j] != 0) {
 			  			ctx.font = "baskerville";
 			  			ctx.fillStyle = "black";
 						ctx.textAlign = "center";
-						ctx.fillText(grid[i*4 +j], j*100+50, i*100+50); 
+						ctx.fillText(grid[i*4 +j], j*(wy/4)+(wy/8), i*(wy/4)+(wy/8)); 
 					}
 		  			j+=1;
 		  		}
