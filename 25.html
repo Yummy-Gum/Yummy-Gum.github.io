@@ -8,14 +8,15 @@
 <h1 id = "2"></h1>
 <h1 id = "3"></h1>
 <h1 id = "4"></h1>
-<body style = "background-color: rgb(255,255,230)">
-	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(200,198,200);position: absolute; left: 0px; top: 0px" ></canvas>
+<body style = "background-color: rgb(240,240,240)">
+	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(140,140,140);position: absolute; left: 0px; top: 0px" ></canvas>
 	<script type="text/javascript">
 		var wx = window.innerWidth;
 		var wy = window.innerHeight;
 		canva.style.left = (wx-wy)/2 + "px";
 		canva.width = wy;
 		canva.height = wy;
+		var spacing = wy/120;
 		var ddeath = false;
 		var x;
 		var click = false;
@@ -85,30 +86,30 @@
 		  		while (j < 4) {
 		  			colour = grid[i*4 + j];
 		  			if (colour == 0) {
-		  				ctx.fillStyle = "rgb(255,255,255)";
-		  			}
-		  			if (colour == 2) {
 		  				ctx.fillStyle = "rgb(200,200,200)";
 		  			}
+		  			if (colour == 2) {
+		  				ctx.fillStyle = "rgb(240,235,220)";
+		  			}
 		  			if (colour == 1) {
-		  				ctx.fillStyle = "rgb(140,140,140)";
+		  				ctx.fillStyle = "rgb(220,215,190)";
 		  			}
 		  			if (colour == 0.5) {
-		  				ctx.fillStyle = "rgb(180,140,100)";
+		  				ctx.fillStyle = "rgb(245,205,130)";
 		  			}
 		  			if (colour == 0.25) {
-		  				ctx.fillStyle = "rgb(220,180,50)";
+		  				ctx.fillStyle = "rgb(255,170,95)";
 		  			}
 		  			if (colour == 0.125) {
-		  				ctx.fillStyle = "rgb(255,200,10)";
+		  				ctx.fillStyle = "rgb(245,167,120)";
 		  			}
 		  			if (colour == 0.0625) {
-		  				ctx.fillStyle = "rgb(255,255,10)";
+		  				ctx.fillStyle = "rgb(240,100,30)";
 		  			}
 		  			if (colour < 0.0625 && colour != 0) {
-		  				ctx.fillStyle = "rgb(0,255,0)"
+		  				ctx.fillStyle = "rgb(255,190,40)"
 		  			}
-		  			ctx.fillRect(j*(wy/4),i*(wy/4),j*(wy/4)+(wy/4),i*(wy/4)+(wy/4));
+		  			ctx.fillRect(j*((wy/4) - (spacing/2)) + 2 * spacing,i*((wy/4) - (spacing/2)) + 2 * spacing,(wy/4) - (spacing/2) - (2*spacing),(wy/4) - (spacing/2) - (2*spacing));
 		  			if (grid[i*4 +j] != 0) {
 			  			ctx.font = "baskerville";
 			  			ctx.fillStyle = "black";
