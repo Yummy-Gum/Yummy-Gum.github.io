@@ -11,6 +11,8 @@
 <body style = "background-color: rgb(240,240,240)">
 	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(140,140,140);position: absolute; left: 0px; top: 0px" ></canvas>
 	<script type="text/javascript">
+		var post64;
+		var thingo;
 		var wx = window.innerWidth;
 		var wy = window.innerHeight;
 		canva.style.left = (wx-wy)/2 + "px";
@@ -107,7 +109,10 @@
 		  				ctx.fillStyle = "rgb(240,100,30)";
 		  			}
 		  			if (colour < 0.0625 && colour != 0) {
-		  				ctx.fillStyle = "rgb(255,190,40)"
+		  				post64 = Math.log2(4/colour);
+		  				
+		  				thingo = "rgb(" + String(post64 * 4 + 200) + "," + String(post64 * 10 + 100) + "," + "20)"
+		  				ctx.fillStyle = thingo;
 		  			}
 		  			ctx.fillRect(j*((wy/4) - (spacing/2)) + 2 * spacing,i*((wy/4) - (spacing/2)) + 2 * spacing,(wy/4) - (spacing/2) - (2*spacing),(wy/4) - (spacing/2) - (2*spacing));
 		  			if (grid[i*4 +j] != 0) {
@@ -133,8 +138,8 @@
 		const grid = 
 	   [0,0,0,0,
 		0,0,0,0,
-		0,0,0,0,
-		0,0,0,0,
+		0,0,0,0.001953125,
+		0.03125,0.015625,0.0078125,0.00390625,
 
 		0,0,0,0];
 		generate()
