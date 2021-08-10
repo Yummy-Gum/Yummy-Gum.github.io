@@ -327,6 +327,8 @@
 			  				}
 		  				}
 		  				if (grid[((i+k)*4)+j]==grid[((i+k+1)*4)+j] && 0!=grid[((i+k)*4)+j]) {
+		  					score += 2 ** (Math.log2(4/(grid[((i+k)*4)+j]/2)));
+		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i+k+1)*4)+j] = grid[((i+k)*4)+j]/2;
 							grid[((i+k)*4)+j] = 0;
 							ddeath = false;
@@ -361,6 +363,8 @@
 			  				}
 		  				}
 		  				if (grid[((i+k))+j*4]==grid[((i+k+1))+j*4] && i+k != 3 && 0!=grid[((i+k))+j*4]) {
+		  					score += 2 ** (Math.log2(4/(grid[((i+k))+j*4]/2)));
+		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i+k+1))+j*4] = grid[((i+k))+j*4]/2;
 							grid[((i+k))+j*4] = 0;
 							ldeath = false;
@@ -395,6 +399,8 @@
 			  				}
 		  				}
 		  				if (grid[((i-k))*4+j]==grid[((i-k-1))*4+j] && i-k != 0 && 0!=grid[((i-k)*4)+j]) {
+		  					score += 2 ** (Math.log2(4/(grid[((i-k))*4+j]/2)));
+		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i-k-1))*4+j] = grid[((i-k))*4+j]/2;
 							grid[((i-k))*4+j] = 0;
 							ddeath = false;
@@ -429,6 +435,8 @@
 			  				}
 		  				}
 		  				if (grid[((i-k))+j*4]==grid[((i-k-1))+j*4] && i-k != 0 && 0!=grid[((i-k))+j*4]) {
+		  					score += 2 ** (Math.log2(4/(grid[((i-k))+j*4]/2)));
+		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i-k-1))+j*4] = grid[((i-k))+j*4]/2;
 							grid[((i-k))+j*4] = 0;
 							ldeath = false;
