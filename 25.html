@@ -4,14 +4,13 @@
 	<title>0.001953125 - THE GAME</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 </head>
-<h1 id = "1"></h1>
-<h1 id = "2"></h1>
-<h1 id = "3"></h1>
-<h1 id = "4"></h1>
+<h1 id = "score">SCORE: 0</h1>
 <body style = "background-color: rgb(240,240,240)">
 	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(140,140,140);position: absolute; left: 0px; top: 0px" ></canvas>
 	<script type="text/javascript">
 		var post64;
+		var start = 0;
+		var score = 0;
 		var thingo;
 		var wx = window.innerWidth;
 		var wy = window.innerHeight;
@@ -72,8 +71,14 @@
 				while (true) {
 					i = Math.floor(Math.random()*16);
 					if (grid[i] == 0){
-						grid[i] = 2;
-						break;
+						if (Math.floor(Math.random()*10)==1 && start > 1) {
+							grid[i] = 1;
+							break;
+						} else {
+							grid[i] = 2;
+							start += 1;
+							break;
+						}
 					}
 				}
 			} else {
@@ -168,6 +173,8 @@
 			  				}
 		  				}
 		  				if (grid[((i+k)*4)+j]==grid[((i+k+1)*4)+j] && 0!=grid[((i+k)*4)+j]) {
+		  					score += 2 ** (Math.log2(4/(grid[((i+k)*4)+j]/2)));
+		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i+k+1)*4)+j] = grid[((i+k)*4)+j]/2;
 							grid[((i+k)*4)+j] = 0;
 							ddeath = false;
@@ -201,6 +208,8 @@
 			  				}
 		  				}
 		  				if (grid[((i+k))+j*4]==grid[((i+k+1))+j*4] && i+k != 3 && 0!=grid[((i+k))+j*4]) {
+		  					score += 2 ** (Math.log2(4/(grid[((i+k))+j*4]/2)));
+		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i+k+1))+j*4] = grid[((i+k))+j*4]/2;
 							grid[((i+k))+j*4] = 0;
 							ldeath = false;
@@ -234,6 +243,8 @@
 			  				}
 		  				}
 		  				if (grid[((i-k))*4+j]==grid[((i-k-1))*4+j] && i-k != 0 && 0!=grid[((i-k)*4)+j]) {
+		  					score += 2 ** (Math.log2(4/(grid[((i-k))*4+j]/2)));
+		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i-k-1))*4+j] = grid[((i-k))*4+j]/2;
 							grid[((i-k))*4+j] = 0;
 							ddeath = false;
@@ -267,6 +278,8 @@
 			  				}
 		  				}
 		  				if (grid[((i-k))+j*4]==grid[((i-k-1))+j*4] && i-k != 0 && 0!=grid[((i-k))+j*4]) {
+		  					score += 2 ** (Math.log2(4/(grid[((i-k))+j*4]/2)));
+		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i-k-1))+j*4] = grid[((i-k))+j*4]/2;
 							grid[((i-k))+j*4] = 0;
 							ldeath = false;
