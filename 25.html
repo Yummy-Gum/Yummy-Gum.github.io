@@ -4,19 +4,21 @@
 	<title>0.001953125 - THE GAME</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 </head>
-<h1 id = "score">SCORE: 0</h1>
+
 <body style = "background-color: rgb(240,240,240)">
 	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(140,140,140);position: absolute; left: 0px; top: 0px" ></canvas>
 	<script type="text/javascript">
 		var post64;
+		var scoreheight = window.innerHeight/17;
 		var start = 0;
+		var fontsize;
 		var score = 0;
 		var thingo;
 		var wx = window.innerWidth;
-		var wy = window.innerHeight;
+		var wy = window.innerHeight - scoreheight;
 		canva.style.left = (wx-wy)/2 + "px";
 		canva.width = wy;
-		canva.height = wy;
+		canva.height = wy + scoreheight;
 		var spacing = wy/120;
 		var ddeath = false;
 		var x;
@@ -119,13 +121,22 @@
 		  				thingo = "rgb(" + String(post64 * 4 + 200) + "," + String(post64 * 10 + 100) + "," + "20)"
 		  				ctx.fillStyle = thingo;
 		  			}
-		  			ctx.fillRect(j*((wy/4) - (spacing/2)) + 2 * spacing,i*((wy/4) - (spacing/2)) + 2 * spacing,(wy/4) - (spacing/2) - (2*spacing),(wy/4) - (spacing/2) - (2*spacing));
+		  			ctx.fillRect(j*((wy/4) - (spacing/2)) + 2 * spacing,(i*((wy/4) - (spacing/2)) + 2 * spacing) + scoreheight,(wy/4) - (spacing/2) - (2*spacing),(wy/4) - (spacing/2) - (2*spacing));
 		  			if (grid[i*4 +j] != 0) {
-			  			ctx.font = "baskerville";
+		  				fontsize = (wy/(String(grid[i*4 +j]).length * 4));
+			  			ctx.font = String(Math.ceil(fontsize)) + "px monospace";
+			  			ctx.textBaseline = 'middle';
 			  			ctx.fillStyle = "black";
 						ctx.textAlign = "center";
-						ctx.fillText(grid[i*4 +j], j*(wy/4)+(wy/8), i*(wy/4)+(wy/8)); 
+						ctx.fillText(grid[i*4 +j], j*(wy/4)+(wy/8), i*(wy/4)+(wy/8) + scoreheight); 
 					}
+					ctx.fillStyle = "black";
+					ctx.fillRect(0,0,wy,scoreheight);
+					ctx.font = "30px baskerville";
+					ctx.fillStyle = "white";
+					ctx.textBaseline = 'middle';
+					ctx.textAlign = "left";
+					ctx.fillText("SCORE: "  + String(score),(scoreheight)/2,((scoreheight)/2))
 		  			j+=1;
 		  		}
 		  		i += 1
@@ -174,7 +185,6 @@
 		  				}
 		  				if (grid[((i+k)*4)+j]==grid[((i+k+1)*4)+j] && 0!=grid[((i+k)*4)+j]) {
 		  					score += 2 ** (Math.log2(4/(grid[((i+k)*4)+j]/2)));
-		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i+k+1)*4)+j] = grid[((i+k)*4)+j]/2;
 							grid[((i+k)*4)+j] = 0;
 							ddeath = false;
@@ -209,7 +219,6 @@
 		  				}
 		  				if (grid[((i+k))+j*4]==grid[((i+k+1))+j*4] && i+k != 3 && 0!=grid[((i+k))+j*4]) {
 		  					score += 2 ** (Math.log2(4/(grid[((i+k))+j*4]/2)));
-		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i+k+1))+j*4] = grid[((i+k))+j*4]/2;
 							grid[((i+k))+j*4] = 0;
 							ldeath = false;
@@ -244,7 +253,6 @@
 		  				}
 		  				if (grid[((i-k))*4+j]==grid[((i-k-1))*4+j] && i-k != 0 && 0!=grid[((i-k)*4)+j]) {
 		  					score += 2 ** (Math.log2(4/(grid[((i-k))*4+j]/2)));
-		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i-k-1))*4+j] = grid[((i-k))*4+j]/2;
 							grid[((i-k))*4+j] = 0;
 							ddeath = false;
@@ -279,7 +287,6 @@
 		  				}
 		  				if (grid[((i-k))+j*4]==grid[((i-k-1))+j*4] && i-k != 0 && 0!=grid[((i-k))+j*4]) {
 		  					score += 2 ** (Math.log2(4/(grid[((i-k))+j*4]/2)));
-		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i-k-1))+j*4] = grid[((i-k))+j*4]/2;
 							grid[((i-k))+j*4] = 0;
 							ldeath = false;
@@ -328,7 +335,6 @@
 		  				}
 		  				if (grid[((i+k)*4)+j]==grid[((i+k+1)*4)+j] && 0!=grid[((i+k)*4)+j]) {
 		  					score += 2 ** (Math.log2(4/(grid[((i+k)*4)+j]/2)));
-		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i+k+1)*4)+j] = grid[((i+k)*4)+j]/2;
 							grid[((i+k)*4)+j] = 0;
 							ddeath = false;
@@ -364,7 +370,6 @@
 		  				}
 		  				if (grid[((i+k))+j*4]==grid[((i+k+1))+j*4] && i+k != 3 && 0!=grid[((i+k))+j*4]) {
 		  					score += 2 ** (Math.log2(4/(grid[((i+k))+j*4]/2)));
-		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i+k+1))+j*4] = grid[((i+k))+j*4]/2;
 							grid[((i+k))+j*4] = 0;
 							ldeath = false;
@@ -400,7 +405,6 @@
 		  				}
 		  				if (grid[((i-k))*4+j]==grid[((i-k-1))*4+j] && i-k != 0 && 0!=grid[((i-k)*4)+j]) {
 		  					score += 2 ** (Math.log2(4/(grid[((i-k))*4+j]/2)));
-		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i-k-1))*4+j] = grid[((i-k))*4+j]/2;
 							grid[((i-k))*4+j] = 0;
 							ddeath = false;
@@ -436,7 +440,6 @@
 		  				}
 		  				if (grid[((i-k))+j*4]==grid[((i-k-1))+j*4] && i-k != 0 && 0!=grid[((i-k))+j*4]) {
 		  					score += 2 ** (Math.log2(4/(grid[((i-k))+j*4]/2)));
-		  					document.getElementById("score").innerHTML = "SCORE: " + String(score);
 		  					grid[((i-k-1))+j*4] = grid[((i-k))+j*4]/2;
 							grid[((i-k))+j*4] = 0;
 							ldeath = false;
