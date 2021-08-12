@@ -37,19 +37,19 @@
 		function dosomething(event) {
 			x = event.touches[0].clientX - actualhi.left;
 			y = event.touches[0].clientY -actualhi.top;
-			if (y > 0 && ((y < x && x > 0 && x < (wy/2)) || (y < (wy - x) && x > (wy/2) && x < wy))) {
+			if (y > scoreheight && ((y - scoreheight < x && x > 0 && x < (wy/2)) || (y - scoreheight < (wy - x) && x > (wy/2) && x < wy))) {
 					up = true
 					click = true
 			}
-			if (x < wy && ((x > y && y > (wy/2) && y < wy) || (x > (wy - y) && y > 0 && y < (wy/2)))) {
+			if (x < wy && ((x > y - scoreheight && y > scoreheight + (wy/2) && y < scoreheight + wy) || (x > scoreheight + (wy - y) && y > scoreheight && y - scoreheight < (wy/2)))) {
 					right = true
 					click = true
 			}
-			if (x > 0 && ((x < y && y > 0 && y < (wy/2)) || (x < (wy - y) && y > (wy/2) && y < wy))) {
+			if (x > 0 && ((x < y - scoreheight && y > scoreheight && y - scoreheight < (wy/2)) || (x < scoreheight + (wy - y) && y - scoreheight > (wy/2) && y - scoreheight < wy))) {
 					left = true
 					click = true
 			}
-			if (y < wy && ((y > x && x < wy && x > (wy/2)) || (y > (wy - x) && x > 0 && x < (wy/2)))) {
+			if (y - scoreheight < wy && ((y - scoreheight > x && x < wy && x > (wy/2)) || (y - scoreheight > (wy - x) && x > 0 && x < (wy/2)))) {
 					down = true
 					click = true
 			}
