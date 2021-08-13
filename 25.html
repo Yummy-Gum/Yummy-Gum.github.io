@@ -9,7 +9,7 @@
 	<canvas id ='canva' width ="400" height = "400" style = "background-color: rgb(140,140,140);position: absolute; left: 0px; top: 0px" ></canvas>
 	<script type="text/javascript">
 		var post64;
-		var lbsize = 0;
+		var leftspace;
 		var scoreheight = window.innerHeight/17;
 		var start = 0;
 		var fontsize;
@@ -23,8 +23,8 @@
 		} else {
 			landscape = true;
 		}
-		canva.style.left = (wx-wy)/2 + "px";
-		canva.width = wy;
+		leftspace = (wx-wy)/2;
+		canva.width = wx;
 		canva.height = wy + scoreheight;
 		var spacing = wy/120;
 		var ddeath = false;
@@ -42,7 +42,7 @@
 		var actualhi = canva.getBoundingClientRect();
 		//canva.preventDefault()
 		function dosomething(event) {
-			x = event.touches[0].clientX - actualhi.left - lbsize;
+			x = event.touches[0].clientX - actualhi.left - leftspace;
 			y = event.touches[0].clientY -actualhi.top;
 			if (y > scoreheight && ((y - scoreheight < x && x > 0 && x < (wy/2)) || (y - scoreheight < (wy - x) && x > (wy/2) && x < wy))) {
 					up = true
