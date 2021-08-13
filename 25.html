@@ -128,22 +128,22 @@
 		  				thingo = "rgb(" + String(post64 * 4 + 200) + "," + String(post64 * 10 + 100) + "," + "20)"
 		  				ctx.fillStyle = thingo;
 		  			}
-		  			ctx.fillRect(j*((wy/4) - (spacing/2)) + 2 * spacing,(i*((wy/4) - (spacing/2)) + 2 * spacing) + scoreheight,(wy/4) - (spacing/2) - (2*spacing),(wy/4) - (spacing/2) - (2*spacing));
+		  			ctx.fillRect(j*((wy/4) - (spacing/2)) + 2 * spacing + leftspace,(i*((wy/4) - (spacing/2)) + 2 * spacing) + scoreheight,(wy/4) - (spacing/2) - (2*spacing),(wy/4) - (spacing/2) - (2*spacing));
 		  			if (grid[i*4 +j] != 0) {
 		  				fontsize = (wy/(String(grid[i*4 +j]).length * 4));
 			  			ctx.font = String(Math.ceil(fontsize)) + "px monospace";
 			  			ctx.textBaseline = 'middle';
 			  			ctx.fillStyle = "black";
 						ctx.textAlign = "center";
-						ctx.fillText(grid[i*4 +j], j*(wy/4)+(wy/8), i*(wy/4)+(wy/8) + scoreheight); 
+						ctx.fillText(grid[i*4 +j], j*(wy/4)+(wy/8) + leftspace, i*(wy/4)+(wy/8) + scoreheight); 
 					}
 					ctx.fillStyle = "black";
-					ctx.fillRect(0,0,wy,scoreheight);
+					ctx.fillRect(leftspace,0,wy,scoreheight);
 					ctx.font = "30px baskerville";
 					ctx.fillStyle = "white";
 					ctx.textBaseline = 'middle';
 					ctx.textAlign = "left";
-					ctx.fillText("SCORE: "  + String(score),(scoreheight)/2,((scoreheight)/2))
+					ctx.fillText("SCORE: "  + String(score),(scoreheight)/2 + leftspace,((scoreheight)/2))
 		  			j+=1;
 		  		}
 		  		i += 1
